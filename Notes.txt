@@ -27,7 +27,18 @@ TO CHANGE POSTGRES PASSWORD:
 
 -------------
 
+DJANGO: 
+
 IF YOU SEE ANY WARNINGS RELATED TO MIGRATION, DO THIS:
 
 - python manage.py makemigrations
 - python manage.py migrate
+
+CREATE ADMIN USER
+
+- python manage.py createsuperuser
+
+-------------
+
+All passwords in the project are: password_dev
+SuperUser name: user
