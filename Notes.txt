@@ -1,0 +1,29 @@
+VIRTUAL ENVIRONMENT:
+
+Using pipenv as the virtual enviornment | https://pypi.org/project/pipenv/
+
+Create environment: 
+pipenv shell (this creates a pipfile)
+
+Activate environment: go to the directory with the pipfile and then type
+pipenv shell 
+
+To make any installations:
+pipenv install xyz 
+(pip install xyz will install it globally even if env is active)
+eg: pip install Django
+
+-------------
+POSTGRESQL:
+
+NEED TO DO THIS AFTER INSTALLING POSTGRESQL on Windows:
+
+- set env variables for bin and lib folders of postgres install directory
+- go to cmd & type:   psql -U postgres    to set a new user named postgres.
+
+TO CHANGE POSTGRES PASSWORD:
+
+- Follow steps 3,4 fromhttps://stackoverflow.com/questions/47311101/forgot-admin-password-on-postgres-windows-installation-cant-reset
+
+-------------
+
