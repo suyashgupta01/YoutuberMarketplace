@@ -3,13 +3,13 @@ VIRTUAL ENVIRONMENT:
 Using pipenv as the virtual enviornment | https://pypi.org/project/pipenv/
 
 Create environment: 
-pipenv shell (this creates a pipfile)
+- pipenv shell (this creates a pipfile)
 
 Activate environment: go to the directory with the pipfile and then type
-pipenv shell 
+- pipenv shell 
 
 To make any installations:
-pipenv install xyz 
+- pipenv install xyz 
 (pip install xyz will install it globally even if env is active)
 eg: pip install Django
 
@@ -27,3 +27,7 @@ TO CHANGE POSTGRES PASSWORD:
 
 -------------
 
+IF YOU SEE ANY WARNINGS RELATED TO MIGRATION, DO THIS:
+
+- python manage.py makemigrations
+- python manage.py migrate
