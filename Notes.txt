@@ -38,6 +38,14 @@ CREATE ADMIN USER
 
 - python manage.py createsuperuser
 
+CREATE AN APP:
+
+- python manage.py startapp <app ka naam> (usually app name is small case)
+- go to settings.py of main application > put this in INSTALLED_APPS -> '<app name>.apps.<app name with first letter capital>Config 
+- go to urls.py of main application > put this in url_patterns       -> path('whatever', include('<appname>.urls'))
+- go to the newly created app's folder > create urls.py and views.py
+- urls.py will have "how to handle urls" & view.py will have the corresponding methods.
+
 -------------
 
 All passwords in the project are: password_dev
