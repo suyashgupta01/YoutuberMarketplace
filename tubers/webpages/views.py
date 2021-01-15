@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Slider
+from .models import Slider, Team
 # Create your views here.
 
 def base(request):
@@ -7,8 +7,10 @@ def base(request):
 
 def home(request):
     sliders = Slider.objects.all()
+    teams = Team.objects.all()
     data = {
-        'sliders': sliders
+        'sliders': sliders,
+        'teams': teams
     }
     return render(request, 'webpages/home.html', data)
 

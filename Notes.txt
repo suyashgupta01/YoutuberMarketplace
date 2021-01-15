@@ -34,6 +34,14 @@ IF YOU SEE ANY WARNINGS RELATED TO MIGRATION, DO THIS:
 - python manage.py makemigrations
 - python manage.py migrate
 
+DO THIS TO PREVENT MANY ERRORS IN VSCODE AND MAKE UR LIFE EASY:
+
+- pipenv install pylint-django
+- Press ctr+sft+P to open the the Command Palette. Now in command palette type Preferences: Configure Language Specific Settings. Now select Python. Here in right side paste this code----> 
+   ,"python.linting.pylintArgs": [
+        "--load-plugins pylint_django",
+    ]
+
 CREATE ADMIN USER
 
 - python manage.py createsuperuser
