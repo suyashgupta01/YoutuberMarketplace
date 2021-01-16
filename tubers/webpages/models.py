@@ -8,6 +8,7 @@ class Team(models.Model):
     role = models.CharField(max_length=255, default="something")
     fb_link = models.CharField(max_length=255)
     insta_link = models.CharField(max_length=255)
+    yt_link = models.CharField(max_length=255, default="https://suyashgupta.me")
     photo = models.ImageField(upload_to="media/team/%Y")
     created_date = models.DateField(auto_now_add=True)
 
