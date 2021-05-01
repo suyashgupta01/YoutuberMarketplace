@@ -1,6 +1,6 @@
 VIRTUAL ENVIRONMENT:
 
-Using pipenv as the virtual enviornment | https://pypi.org/project/pipenv/
+Using pipenv as the virtual enviornment | https://pypi.org/project/pipenv/ (pip install pipenv)
 
 Create environment: 
 - pipenv shell (this creates a pipfile)
@@ -13,21 +13,30 @@ To make any installations:
 (pip install xyz will install it globally even if env is active)
 eg: pip install Django
 
+To exit the env:
+exit
+
 -------------
 POSTGRESQL:
 
 NEED TO DO THIS AFTER INSTALLING POSTGRESQL on Windows:
 
-- set env variables for bin and lib folders of postgres install directory
+- set path for bin and lib folders of postgres install directory
 - go to cmd & type:   psql -U postgres    to set a new user named postgres.
 
 TO CHANGE POSTGRES PASSWORD:
 
-- Follow steps 3,4 fromhttps://stackoverflow.com/questions/47311101/forgot-admin-password-on-postgres-windows-installation-cant-reset
+- Follow steps 3,4 from https://stackoverflow.com/questions/47311101/forgot-admin-password-on-postgres-windows-installation-cant-reset
+
+RUN POSTGRESQL:
+type pgadmin in windows search 
 
 -------------
 
 DJANGO: 
+
+Install Django ini pipenv:
+pipenv install django
 
 IF YOU SEE ANY WARNINGS RELATED TO MIGRATION, DO THIS:
 
@@ -42,17 +51,85 @@ DO THIS TO PREVENT MANY ERRORS IN VSCODE AND MAKE UR LIFE EASY:
         "--load-plugins pylint_django",
     ]
 
-CREATE ADMIN USER
+CREATE ADMIN USER:
 
 - python manage.py createsuperuser
 
 CREATE AN APP:
 
-- python manage.py startapp <app ka naam> (usually app name is small case)
-- go to settings.py of main application > put this in INSTALLED_APPS -> '<app name>.apps.<app name with first letter capital>Config 
-- go to urls.py of main application > put this in url_patterns       -> path('whatever', include('<appname>.urls'))
+assuming app ka naam = myapp (usually app name is small case)
+- python manage.py startapp myapp 
+- go to settings.py of main application > put this in INSTALLED_APPS -> 'myapp.apps.MyappConfig',      (second time app ke naam ka 1st letter captial)
+- go to urls.py of main application > put this in url_patterns       -> path('whatever/', include('myapp.urls'))
 - go to the newly created app's folder > create urls.py and views.py
 - urls.py will have "how to handle urls" & view.py will have the corresponding methods.
+
+CREATING A PAGE ON THE WEBSITE:
+- Create a template
+- Create a view
+- Create a new url route
+
+CREATING TEMPLATES:
+
+Way 1: Seperate templates directory for each app: (not using this)
+- Inside the app folder, create a folder 'templates', then in it, create a directory with the name of the app 'myapp', then in it we'll place our .html files
+for the template.
+
+Way 2: One templates directory for the whole project: (using this)
+- Inside the project folder, create a 'templates' folder and put the .html files inside it.
+- Gotta add this line in TEMPLATES in 'settings.py' -> 'DIRS': [os.path.join(BASE_DIR, 'templates')]
+
+VIEWS: 
+
+- Note that 1st letter of class name is captial.
+
+# myapp/views.py (app level)
+from django.views.generic import TemplateView
+class Whatever(TemplateView): 
+	template_name = 'abcd.html'
+
+URLS: 
+
+# myproject/urls.py (project level)
+from django.contrib import admin
+from django.urls import path, include
+urlpatterns = [
+path('whatever/', include('myapp.urls')), # new
+]
+
+# pages/urls.py (app level)
+from django.urls import path
+from .views import Whatever
+urlpatterns = [
+path('', Whatever.as_view(), name='home'),
+]
+
+
+CREATE A MODEL: (Reuqired only if we're using a database)
+
+- Create models.py in project's main directory
+
+# myapp/models.py
+from django.db import models
+class Person(models.Model):
+	name = models.CharField(max_length = 255)
+	age = models.IntegerField()
+	photo = models.ImageField(upload_to = 'some address')
+	is_armymam = models.BooleanField(default = Flase)
+	
+- Go to admin.py in project's main directory
+
+# myapp/admin.py
+from django.contrib import admin
+from .models import Person
+admin.site.register(Person)
+
+- Make migrations!
+python manage.py makemigrations
+python manage.py migrate
+
+RUT THE SITE:
+python manage.py runserver
 
 -------------
 

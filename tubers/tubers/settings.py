@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'youtubers.apps.YoutubersConfig', # jo app banaya tha youtubers naam se
     'webpages.apps.WebpagesConfig', # jo app banaya tha webpages naam se
     'djangocms_admin_style', # theme jo install ki thi
     'django.contrib.admin',
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'ckeditor', # pipenv install django-ckeditor :)
 ]
 
 MIDDLEWARE = [
