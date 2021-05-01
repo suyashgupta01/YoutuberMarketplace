@@ -10,10 +10,12 @@ def home(request):
     sliders = Slider.objects.all()
     teams = Team.objects.all()
     featured_youtubers = Youtuber.objects.order_by('-created_date').filter(is_featured=True)
+    latest_onboard_youtubers = Youtuber.objects.order_by('-created_date')
     data = {
         'sliders': sliders,
         'teams': teams,
         'featured_youtubers': featured_youtubers,
+        'latest_onboard_youtubers': latest_onboard_youtubers,
     }
     return render(request, 'webpages/home.html', data)
 
